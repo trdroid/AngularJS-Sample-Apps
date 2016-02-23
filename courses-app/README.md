@@ -352,4 +352,42 @@ Now, the tests can be run with the command: <i>npm test</i>
 
 The browser opens up, just like above.
 
+### Install Phantomjs Launcher
+
+PhantomJS launcher allows the tests to be run in a headless browser. This results in a faster feedback from running tests. 
+
+> courses-app$ npm install karma-phantomjs-launcher --save-dev
+
+        npm WARN package.json courses-app@1.0.0 No repository field.
+        npm WARN peerDependencies The peer dependency phantomjs-prebuilt@>=1.9 included from karma-phantomjs-launcher will no
+        npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency 
+        npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+        \
+        > phantomjs-prebuilt@2.1.4 install /home/droid/onGit/AngularJS/courses-app/node_modules/phantomjs-prebuilt
+        > node install.js
+        
+        PhantomJS not found on PATH
+        Downloading https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+        Saving to /tmp/phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2
+        Receiving...
+          [========================================] 99%
+        Received 22866K total.
+        Extracting tar contents (via spawned process)
+        Removing /home/droid/onGit/AngularJS/courses-app/node_modules/phantomjs-prebuilt/lib/phantom
+        Copying extracted folder /tmp/phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2-extract-1456252486111/phantomjs-2.1.1-linux-x86_64 -> /home/droid/onGit/AngularJS/courses-app/node_modules/phantomjs-prebuilt/lib/phantom
+        Writing location.js file
+        Done. Phantomjs binary available at /home/droid/onGit/AngularJS/courses-app/node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs
+        phantomjs-prebuilt@2.1.4 node_modules/phantomjs-prebuilt
+        ├── progress@1.1.8
+        ├── kew@0.7.0
+        ├── adm-zip@0.4.7
+        ├── md5@2.0.0 (crypt@0.0.1, charenc@0.0.1, is-buffer@1.0.2)
+        ├── request-progress@2.0.1 (throttleit@1.0.0)
+        ├── which@1.2.4 (isexe@1.1.2, is-absolute@0.1.7)
+        ├── fs-extra@0.26.5 (path-is-absolute@1.0.0, klaw@1.1.3, graceful-fs@4.1.3, jsonfile@2.2.3, rimraf@2.5.2)
+        └── request@2.67.0 (aws-sign2@0.6.0, forever-agent@0.6.1, oauth-sign@0.8.1, caseless@0.11.0, is-typedarray@1.0.0, tunnel-agent@0.4.2, stringstream@0.0.5, isstream@0.1.2, json-stringify-safe@5.0.1, extend@3.0.0, tough-cookie@2.2.1, node-uuid@1.4.7, qs@5.2.0, combined-stream@1.0.5, mime-types@2.1.10, form-data@1.0.0-rc3, hawk@3.1.3, bl@1.0.3, http-signature@1.1.1, har-validator@2.0.6)
+        
+        karma-phantomjs-launcher@1.0.0 node_modules/karma-phantomjs-launcher
+        └── lodash@4.5.1
+
 
