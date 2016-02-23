@@ -133,5 +133,183 @@ Install Jasmine add-on and choose which browser to target when executing the tes
 
 It is possible to target more than one browser at the same time, by installing respective browser adapters through npm. 
 
-### Setup Default Configuration
+<i> package.json </i>
+
+```javascript
+{
+  "name": "courses-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7"
+  }
+}
+```
+
+### Get Jasmine
+
+> courses-app$ curl -L -O https://github.com/jasmine/jasmine/releases/download/v2.4.1/jasmine-standalone-2.4.1.zip
+
+          % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                         Dload  Upload   Total   Spent    Left  Speed
+        100   602    0   602    0     0   1160      0 --:--:-- --:--:-- --:--:--  1162
+        100 46770  100 46770    0     0  44743      0  0:00:01  0:00:01 --:--:--  114k
+
+
+> courses-app$ unzip jasmine-standalone-2.4.1.zip
+
+        Archive:  jasmine-standalone-2.4.1.zip
+          inflating: MIT.LICENSE             
+          inflating: lib/jasmine-2.4.1/jasmine_favicon.png  
+          inflating: lib/jasmine-2.4.1/jasmine.js  
+          inflating: lib/jasmine-2.4.1/jasmine-html.js  
+          inflating: lib/jasmine-2.4.1/jasmine.css  
+          inflating: lib/jasmine-2.4.1/console.js  
+          inflating: lib/jasmine-2.4.1/boot.js  
+          inflating: SpecRunner.html         
+          inflating: src/Player.js           
+          inflating: src/Song.js             
+          inflating: spec/PlayerSpec.js      
+          inflating: spec/SpecHelper.js      
+
+### Setup Default Configuration for Karma
+
+> courses-app$ karma init
+
+        Which testing framework do you want to use ?
+        Press tab to list possible options. Enter to move to the next question.
+        > jasmine
+        
+        Do you want to use Require.js ?
+        This will add Require.js plugin.
+        Press tab to list possible options. Enter to move to the next question.
+        > no
+        
+        Do you want to capture any browsers automatically ?
+        Press tab to list possible options. Enter empty string to move to the next question.
+        > Chrome
+        > 
+        
+        What is the location of your source and test files ?
+        You can use glob patterns, eg. "js/*.js" or "test/**/*Spec.js".
+        Enter empty string to move to the next question.
+        > src/**/*.js
+        > spec/**/*.js
+        > 
+        
+        Should any of the files included by the previous patterns be excluded ?
+        You can use glob patterns, eg. "**/*.swp".
+        Enter empty string to move to the next question.
+        > 
+        
+        Do you want Karma to watch all the files and run the tests on change ?
+        Press tab to list possible options.
+        > yes
+        
+        
+        Config file generated at "/home/droid/onGit/AngularJS/courses-app/karma.conf.js".
+
+<i> karma.conf.js </i>
+
+```javascript
+// Karma configuration
+// Generated on Mon Feb 22 2016 23:01:28 GMT-0500 (EST)
+
+module.exports = function(config) {
+  config.set({
+
+    // base path that will be used to resolve all patterns (eg. files, exclude)
+    basePath: '',
+
+
+    // frameworks to use
+    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['jasmine'],
+
+
+    // list of files / patterns to load in the browser
+    files: [
+      'src/**/*.js',
+      'spec/**/*.js'
+    ],
+
+
+    // list of files to exclude
+    exclude: [
+    ],
+
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+    },
+
+
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['progress'],
+
+
+    // web server port
+    port: 9876,
+
+
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
+
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
+
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
+
+
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['Chrome'],
+
+
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: false,
+
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity
+  })
+}
+```
+### Project Contents 
+
+<img src="_misc/project%20structure.png"/>
+
+### Start Tests 
+
+Start the tests using the <i>karma start</i> command and by passing it the configuration file created above
+
+> courses-app$ karma start karma.conf.js
+
+        22 02 2016 23:04:44.676:WARN [karma]: No captured browser, open http://localhost:9876/
+        22 02 2016 23:04:44.703:INFO [karma]: Karma v0.13.21 server started at http://localhost:9876/
+        22 02 2016 23:04:44.710:INFO [launcher]: Starting browser Chrome
+        22 02 2016 23:05:04.623:INFO [Chrome 48.0.2564 (Linux 0.0.0)]: Connected on socket /#ZiOLUc6bGwtXIhoXAAAA with id 88103244
+        Chrome 48.0.2564 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.039 secs / 0.011 secs)
+
+The browser started is shown below
+
+<img src="_misc/chrome%20launched%20on%20running%20tests%20using%20karma.png"/>
+
 
