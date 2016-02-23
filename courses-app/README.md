@@ -91,4 +91,43 @@ To access karma just by the "karma" command without having to provide the exact 
         karma-cli@0.1.2 /home/droid/software/node/node-v4.2.2-linux-x64/lib/node_modules/karma-cli
         └── resolve@1.1.7
 
+> courses-app$ karma
+
+        Command not specified.
+        Karma - Spectacular Test Runner for JavaScript.
+        
+        Usage:
+          karma <command>
+        
+        Commands:
+          start [<configFile>] [<options>] Start the server / do single run.
+          init [<configFile>] Initialize a config file.
+          run [<options>] [ -- <clientArgs>] Trigger a test run.
+          completion Shell completion for karma.
+        
+        Run --help with particular command to see its description and available options.
+        
+        Options:
+          --help     Print usage and options.
+          --version  Print current version.  
+
+### Install Jasmine add-on and Choose Browser Target 
+
+Install Jasmine add-on and choose which browser to target when executing the tests.
+
+> courses-app$ npm install karma-jasmine karma-chrome-launcher --save-dev
+
+        npm WARN package.json courses-app@1.0.0 No description
+        npm WARN package.json courses-app@1.0.0 No repository field.
+        npm WARN package.json courses-app@1.0.0 No README data
+        npm WARN peerDependencies The peer dependency jasmine-core@* included from karma-jasmine will no
+        npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency 
+        npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+        jasmine-core@2.4.1 node_modules/jasmine-core
+        
+        karma-jasmine@0.3.7 node_modules/karma-jasmine
+        
+        karma-chrome-launcher@0.2.2 node_modules/karma-chrome-launcher
+        ├── fs-access@1.0.0 (null-check@1.0.0)
+        └── which@1.2.4 (isexe@1.1.2, is-absolute@0.1.7)
 
