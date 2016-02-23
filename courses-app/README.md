@@ -482,3 +482,97 @@ module.exports = function(config) {
 
 ### Target Multiple Browsers
 
+Include all the browsers that the tests have to be run on in the "browsers" property.
+
+```javascript
+// Karma configuration
+// Generated on Mon Feb 22 2016 23:01:28 GMT-0500 (EST)
+
+module.exports = function(config) {
+  config.set({
+
+    // base path that will be used to resolve all patterns (eg. files, exclude)
+    basePath: '',
+
+
+    // frameworks to use
+    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['jasmine'],
+
+
+    // list of files / patterns to load in the browser
+    files: [
+      'src/**/*.js',
+      'spec/**/*.js'
+    ],
+
+
+    // list of files to exclude
+    exclude: [
+    ],
+
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+    },
+
+
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['progress'],
+
+
+    // web server port
+    port: 9876,
+
+
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
+
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
+
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
+
+
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['PhantomJS', 'Chrome'],  <----------------------
+
+
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: false,
+
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity
+  })
+}
+```
+
+### Run Tests
+
+> courses-app$ npm test
+
+    > courses-app@1.0.0 test /home/droid/onGit/AngularJS/courses-app
+    > ./node_modules/karma/bin/karma start karma.conf.js
+    
+    23 02 2016 13:47:44.046:WARN [karma]: No captured browser, open http://localhost:9876/
+    23 02 2016 13:47:44.060:INFO [karma]: Karma v0.13.21 server started at http://localhost:9876/
+    23 02 2016 13:47:44.092:INFO [launcher]: Starting browser PhantomJS
+    23 02 2016 13:47:44.147:INFO [launcher]: Starting browser Chrome
+    23 02 2016 13:47:47.523:INFO [PhantomJS 2.1.1 (Linux 0.0.0)]: Connected on socket /#ntLDDKhUuYW9AW9pAAAA with id 11238550
+    23 02 2016 13:48:08.012:INFO [Chrome 48.0.2564 (Linux 0.0.0)]: Connected on socket /#L9B75Jg_ZXDqBky0AAAB with id 32029095
+    PhantomJS 2.1.1 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.051 secs / 0.007 secs)
+    Chrome 48.0.2564 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.042 secs / 0.01 secs)
+    TOTAL: 10 SUCCESS
+
+This opens up the Chrome browser.
+
