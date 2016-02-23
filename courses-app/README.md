@@ -466,3 +466,19 @@ module.exports = function(config) {
   })
 }
 ```
+
+### Run Tests
+
+> courses-app$ npm test
+
+    > courses-app@1.0.0 test /home/droid/onGit/AngularJS/courses-app
+    > ./node_modules/karma/bin/karma start karma.conf.js
+    
+    23 02 2016 13:43:03.964:WARN [karma]: No captured browser, open http://localhost:9876/
+    23 02 2016 13:43:04.029:INFO [karma]: Karma v0.13.21 server started at http://localhost:9876/
+    23 02 2016 13:43:04.074:INFO [launcher]: Starting browser PhantomJS
+    23 02 2016 13:43:08.070:INFO [PhantomJS 2.1.1 (Linux 0.0.0)]: Connected on socket /#PRkTDnJem5pBz2pQAAAA with id 77568782
+    PhantomJS 2.1.1 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.043 secs / 0.004 secs)
+
+### Target Multiple Browsers
+
