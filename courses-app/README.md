@@ -131,3 +131,7 @@ Install Jasmine add-on and choose which browser to target when executing the tes
         ├── fs-access@1.0.0 (null-check@1.0.0)
         └── which@1.2.4 (isexe@1.1.2, is-absolute@0.1.7)
 
+It is possible to target more than one browser at the same time, by installing respective browser adapters through npm. 
+
+### Setup Default Configuration
+
