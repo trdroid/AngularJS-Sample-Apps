@@ -1,3 +1,15 @@
+### Create Project
+
+Create a directory "courses-app"
+
+> courses-app$ node -v
+    
+    v4.2.2
+
+> courses-app$ npm -v
+    
+    2.14.7
+    
 > courses-app$ npm init
 
     This utility will walk you through creating a package.json file.
@@ -36,13 +48,7 @@
     
     Is this ok? (yes) 
 
-> courses-app$ node -v
-    
-    v4.2.2
-
-> courses-app$ npm -v
-    
-    2.14.7
+### Install Karma
 
 > courses-app$ npm install karma --save-dev
 
@@ -74,4 +80,15 @@
     ├── lodash@3.10.1
     ├── core-js@2.1.1
     └── socket.io@1.4.5 (has-binary@0.1.7, debug@2.2.0, socket.io-parser@2.2.6, socket.io-adapter@0.4.0, engine.io@1.6.8, socket.io-client@1.4.5)
+
+### Install Karma Command Line Utility
+
+To access karma just by the "karma" command without having to provide the exact path of the karma executable, install karma-cli globally. 
+
+> courses-app$ npm install karma-cli -g
+
+        /home/droid/software/node/node-v4.2.2-linux-x64/bin/karma -> /home/droid/software/node/node-v4.2.2-linux-x64/lib/node_modules/karma-cli/bin/karma
+        karma-cli@0.1.2 /home/droid/software/node/node-v4.2.2-linux-x64/lib/node_modules/karma-cli
+        └── resolve@1.1.7
+
 
