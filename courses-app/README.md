@@ -312,4 +312,42 @@ The browser started is shown below
 
 <img src="_misc/chrome%20launched%20on%20running%20tests%20using%20karma.png"/>
 
+<b> Adding launch command to package.json </b>
+
+To be able to run the tests using the <i>npm</i> command in the command-line, add the following to package.json file
+
+```javascript
+{
+  "name": "courses-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start karma.conf.js"   <-------
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7"
+  }
+}
+
+```
+
+Now, the tests can be run with the command: <i>npm test</i>
+
+> courses-app$ npm test
+
+        > courses-app@1.0.0 test /home/droid/onGit/AngularJS/courses-app
+        > ./node_modules/karma/bin/karma start karma.conf.js
+        
+        22 02 2016 23:27:55.418:WARN [karma]: No captured browser, open http://localhost:9876/
+        22 02 2016 23:27:55.449:INFO [karma]: Karma v0.13.21 server started at http://localhost:9876/
+        22 02 2016 23:27:55.504:INFO [launcher]: Starting browser Chrome
+        22 02 2016 23:28:04.150:INFO [Chrome 48.0.2564 (Linux 0.0.0)]: Connected on socket /#-wNF7lk19xAMR65uAAAA with id 49340086
+        Chrome 48.0.2564 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.026 secs / 0.011 secs)
+
 
