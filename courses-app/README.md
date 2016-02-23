@@ -350,4 +350,6 @@ Now, the tests can be run with the command: <i>npm test</i>
         22 02 2016 23:28:04.150:INFO [Chrome 48.0.2564 (Linux 0.0.0)]: Connected on socket /#-wNF7lk19xAMR65uAAAA with id 49340086
         Chrome 48.0.2564 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.026 secs / 0.011 secs)
 
+The browser opens up, just like above.
+
 
