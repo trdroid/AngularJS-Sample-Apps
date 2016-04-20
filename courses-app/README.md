@@ -3,36 +3,36 @@
 Create a directory "courses-app"
 
 > courses-app$ node -v
-    
+
     v4.2.2
 
 > courses-app$ npm -v
-    
+
     2.14.7
-    
+
 > courses-app$ npm init
 
     This utility will walk you through creating a package.json file.
     It only covers the most common items, and tries to guess sensible defaults.
-    
+
     See `npm help json` for definitive documentation on these fields
     and exactly what they do.
-    
+
     Use `npm install <pkg> --save` afterwards to install a package and
     save it as a dependency in the package.json file.
-    
+
     Press ^C at any time to quit.
-    name: (courses-app) 
-    version: (1.0.0) 
-    description: 
-    entry point: (index.js) 
-    test command: 
-    git repository: 
-    keywords: 
-    author: 
-    license: (ISC) 
+    name: (courses-app)
+    version: (1.0.0)
+    description:
+    entry point: (index.js)
+    test command:
+    git repository:
+    keywords:
+    author:
+    license: (ISC)
     About to write to /home/droid/onGit/AngularJS/courses-app/package.json:
-    
+
     {
       "name": "courses-app",
       "version": "1.0.0",
@@ -44,9 +44,9 @@ Create a directory "courses-app"
       "author": "",
       "license": "ISC"
     }
-    
-    
-    Is this ok? (yes) 
+
+
+    Is this ok? (yes)
 
 ### Install Karma
 
@@ -83,7 +83,7 @@ Create a directory "courses-app"
 
 ### Install Karma Command Line Utility
 
-To access karma just by the "karma" command without having to provide the exact path of the karma executable, install karma-cli globally. 
+To access karma just by the "karma" command without having to provide the exact path of the karma executable, install karma-cli globally.
 
 > courses-app$ npm install karma-cli -g
 
@@ -95,23 +95,23 @@ To access karma just by the "karma" command without having to provide the exact 
 
         Command not specified.
         Karma - Spectacular Test Runner for JavaScript.
-        
+
         Usage:
           karma <command>
-        
+
         Commands:
           start [<configFile>] [<options>] Start the server / do single run.
           init [<configFile>] Initialize a config file.
           run [<options>] [ -- <clientArgs>] Trigger a test run.
           completion Shell completion for karma.
-        
+
         Run --help with particular command to see its description and available options.
-        
+
         Options:
           --help     Print usage and options.
           --version  Print current version.  
 
-### Install Jasmine add-on and Choose Browser Target 
+### Install Jasmine add-on and Choose Browser Target
 
 Install Jasmine add-on and choose which browser to target when executing the tests.
 
@@ -121,17 +121,17 @@ Install Jasmine add-on and choose which browser to target when executing the tes
         npm WARN package.json courses-app@1.0.0 No repository field.
         npm WARN package.json courses-app@1.0.0 No README data
         npm WARN peerDependencies The peer dependency jasmine-core@* included from karma-jasmine will no
-        npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency 
+        npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
         npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
         jasmine-core@2.4.1 node_modules/jasmine-core
-        
+
         karma-jasmine@0.3.7 node_modules/karma-jasmine
-        
+
         karma-chrome-launcher@0.2.2 node_modules/karma-chrome-launcher
         ├── fs-access@1.0.0 (null-check@1.0.0)
         └── which@1.2.4 (isexe@1.1.2, is-absolute@0.1.7)
 
-It is possible to target more than one browser at the same time, by installing respective browser adapters through npm. 
+It is possible to target more than one browser at the same time, by installing respective browser adapters through npm.
 
 <i> package.json </i>
 
@@ -188,34 +188,34 @@ It is possible to target more than one browser at the same time, by installing r
         Which testing framework do you want to use ?
         Press tab to list possible options. Enter to move to the next question.
         > jasmine
-        
+
         Do you want to use Require.js ?
         This will add Require.js plugin.
         Press tab to list possible options. Enter to move to the next question.
         > no
-        
+
         Do you want to capture any browsers automatically ?
         Press tab to list possible options. Enter empty string to move to the next question.
         > Chrome
-        > 
-        
+        >
+
         What is the location of your source and test files ?
         You can use glob patterns, eg. "js/*.js" or "test/**/*Spec.js".
         Enter empty string to move to the next question.
         > src/**/*.js
         > spec/**/*.js
-        > 
-        
+        >
+
         Should any of the files included by the previous patterns be excluded ?
         You can use glob patterns, eg. "**/*.swp".
         Enter empty string to move to the next question.
-        > 
-        
+        >
+
         Do you want Karma to watch all the files and run the tests on change ?
         Press tab to list possible options.
         > yes
-        
-        
+
+
         Config file generated at "/home/droid/onGit/AngularJS/courses-app/karma.conf.js".
 
 <i> karma.conf.js </i>
@@ -292,11 +292,11 @@ module.exports = function(config) {
   })
 }
 ```
-### Project Contents 
+### Project Contents
 
 <img src="_misc/project%20structure.png"/>
 
-### Start Tests 
+### Start Tests
 
 Start the tests using the <i>karma start</i> command and by passing it the configuration file created above
 
@@ -343,7 +343,7 @@ Now, the tests can be run with the command: <i>npm test</i>
 
         > courses-app@1.0.0 test /home/droid/onGit/AngularJS/courses-app
         > ./node_modules/karma/bin/karma start karma.conf.js
-        
+
         22 02 2016 23:27:55.418:WARN [karma]: No captured browser, open http://localhost:9876/
         22 02 2016 23:27:55.449:INFO [karma]: Karma v0.13.21 server started at http://localhost:9876/
         22 02 2016 23:27:55.504:INFO [launcher]: Starting browser Chrome
@@ -354,18 +354,18 @@ The browser opens up, just like above.
 
 ### Install Phantomjs Launcher
 
-PhantomJS launcher allows the tests to be run in a headless browser. This results in a faster feedback from running tests. 
+PhantomJS launcher allows the tests to be run in a headless browser. This results in a faster feedback from running tests.
 
 > courses-app$ npm install karma-phantomjs-launcher --save-dev
 
     npm WARN package.json courses-app@1.0.0 No repository field.
     npm WARN peerDependencies The peer dependency phantomjs-prebuilt@>=1.9 included from karma-phantomjs-launcher will no
-    npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency 
+    npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
     npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
     \
     > phantomjs-prebuilt@2.1.4 install /home/droid/onGit/AngularJS/courses-app/node_modules/phantomjs-prebuilt
     > node install.js
-    
+
     PhantomJS not found on PATH
     Downloading https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
     Saving to /tmp/phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2
@@ -386,7 +386,7 @@ PhantomJS launcher allows the tests to be run in a headless browser. This result
     ├── which@1.2.4 (isexe@1.1.2, is-absolute@0.1.7)
     ├── fs-extra@0.26.5 (path-is-absolute@1.0.0, klaw@1.1.3, graceful-fs@4.1.3, jsonfile@2.2.3, rimraf@2.5.2)
     └── request@2.67.0 (aws-sign2@0.6.0, forever-agent@0.6.1, oauth-sign@0.8.1, caseless@0.11.0, is-typedarray@1.0.0, tunnel-agent@0.4.2, stringstream@0.0.5, isstream@0.1.2, json-stringify-safe@5.0.1, extend@3.0.0, tough-cookie@2.2.1, node-uuid@1.4.7, qs@5.2.0, combined-stream@1.0.5, mime-types@2.1.10, form-data@1.0.0-rc3, hawk@3.1.3, bl@1.0.3, http-signature@1.1.1, har-validator@2.0.6)
-    
+
     karma-phantomjs-launcher@1.0.0 node_modules/karma-phantomjs-launcher
     └── lodash@4.5.1
 
@@ -473,7 +473,7 @@ module.exports = function(config) {
 
     > courses-app@1.0.0 test /home/droid/onGit/AngularJS/courses-app
     > ./node_modules/karma/bin/karma start karma.conf.js
-    
+
     23 02 2016 13:43:03.964:WARN [karma]: No captured browser, open http://localhost:9876/
     23 02 2016 13:43:04.029:INFO [karma]: Karma v0.13.21 server started at http://localhost:9876/
     23 02 2016 13:43:04.074:INFO [launcher]: Starting browser PhantomJS
@@ -483,6 +483,10 @@ module.exports = function(config) {
 ### Target Multiple Browsers
 
 Include all the browsers that the tests have to be run on in the "browsers" property.
+
+Example:
+
+Use the PhantomJS launcher and a Chrome launcher to launch the tests in both the headless browser and the chrome browser simultaneously.
 
 ```javascript
 // Karma configuration
@@ -559,11 +563,12 @@ module.exports = function(config) {
 
 ### Run Tests
 
+```sh
 > courses-app$ npm test
 
     > courses-app@1.0.0 test /home/droid/onGit/AngularJS/courses-app
     > ./node_modules/karma/bin/karma start karma.conf.js
-    
+
     23 02 2016 13:47:44.046:WARN [karma]: No captured browser, open http://localhost:9876/
     23 02 2016 13:47:44.060:INFO [karma]: Karma v0.13.21 server started at http://localhost:9876/
     23 02 2016 13:47:44.092:INFO [launcher]: Starting browser PhantomJS
@@ -573,6 +578,8 @@ module.exports = function(config) {
     PhantomJS 2.1.1 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.051 secs / 0.007 secs)
     Chrome 48.0.2564 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.042 secs / 0.01 secs)
     TOTAL: 10 SUCCESS
+```
 
-This opens up the Chrome browser.
+This opens up the Chrome browser similar to the snapshot shown above.
 
+Notice from the output that the tests were also run in the headless browser using the PhantomJS launcher.
