@@ -744,3 +744,105 @@ module.exports = function(config) {
 **Remove template files**
 
 Delete *spec/PlayerSpec.js* and *spec/SpecHelper.js*
+
+### Writing a sample test
+
+Assuming that the Web API returns the following data
+
+```json
+{
+  "courses": [
+    {
+      "Title": "Beginning AngularJS",
+      "ID": "Ang15",
+      "Category": "JavaScript",      
+    },
+    {
+      "Title": "Beginning Android",
+      "ID": "And20",
+      "Category": "Java",      
+    }    
+  ]
+}
+```
+
+**Create the test case**
+
+Create a file *spec/courses/api-service.spec.js*
+
+```JavaScript
+describe('courses api service', function() {
+  var courses = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  it('should return a list of courses offered and their details', function() {
+    var apiService = {};
+    expect(apiService.get('courses')).toEqual(courses);
+  })
+});
+```
+
+**Making sure it fails**
+
+```sh
+~/onGit/AngularJS-Sample-Apps/courses-app$ npm test
+
+> courses-app@1.0.0 test /home/droid/onGit/AngularJS-Sample-Apps/courses-app
+> ./node_modules/karma/bin/karma start karma.conf.js
+
+21 04 2016 11:51:12.406:WARN [karma]: No captured browser, open http://localhost:9876/
+21 04 2016 11:51:12.419:INFO [karma]: Karma v0.13.21 server started at http://localhost:9876/
+21 04 2016 11:51:12.462:INFO [launcher]: Starting browser PhantomJS
+21 04 2016 11:51:15.865:INFO [PhantomJS 2.1.1 (Linux 0.0.0)]: Connected on socket /#hAkOmNivO4EdwlYaAAAA with id 90341517
+PhantomJS 2.1.1 (Linux 0.0.0) courses api service should return a list of courses offered and their details FAILED
+	TypeError: undefined is not a function (evaluating 'apiService.get('courses')') in /home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js (line 19)
+	/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js:19:26
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 (1 FAILED) ERROR (0.041 secs / 0.001 secs)
+```
+
+**Writing just enough code to make the test pass**
+
+```javascript
+describe('courses api service', function() {
+  var courses = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  it('should return a list of courses offered and their details', function() {
+    var apiService = {
+      get: function(section) {                <--------------
+        return courses;
+      }
+    };
+    expect(apiService.get('courses')).toEqual(courses);
+  })
+});
+```
+
+```sh
+21 04 2016 12:17:35.658:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.037 secs / 0.001 secs)
+```
