@@ -622,3 +622,7 @@ droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib/angular$ curl -O
 droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib/angular$ ls
 angular.min.js  angular-mocks.js
 ```
+
+**Project Content**
+
+![](_misc/Project%20Content%20after%20getting%20angular.png)
