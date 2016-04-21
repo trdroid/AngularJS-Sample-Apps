@@ -625,6 +625,10 @@ droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib/angular$ ls
 angular.min.js  angular-mocks.js
 ```
 
+**Project Content**
+
+![](_misc/Project%20Content%20after%20getting%20angular.png)
+
 **Include libraries**
 
 *SpecRunner.html*
@@ -737,6 +741,6 @@ module.exports = function(config) {
 }
 ```
 
-**Project Content**
+**Remove template files**
 
-![](_misc/Project%20Content%20after%20getting%20angular.png)
+Delete *spec/PlayerSpec.js* and *spec/SpecHelper.js*
