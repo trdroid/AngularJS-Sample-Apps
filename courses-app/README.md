@@ -304,7 +304,7 @@ module.exports = function(config) {
 ```
 ### Project Contents
 
-![](_misc/project%20structure.png")
+![](_misc/project%20structure.png)
 
 ### Start Tests
 
@@ -322,7 +322,7 @@ Start the tests using the <i>karma start</i> command and by passing it the confi
 
 The browser started is shown below
 
-![](_misc/chrome%20launched%20on%20running%20tests%20using%20karma.png")
+![](_misc/chrome%20launched%20on%20running%20tests%20using%20karma.png)
 
 <b> Adding launch command to package.json </b>
 
