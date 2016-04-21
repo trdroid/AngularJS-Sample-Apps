@@ -685,7 +685,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'lib/angular/angular.min.js',                             <-----------------
-      'lib/angular/angular-mocks.js'
+      'lib/angular/angular-mocks.js',
       'src/**/*.js',
       'spec/**/*.js'
     ],
@@ -793,6 +793,10 @@ describe('courses api service', function() {
   })
 });
 ```
+
+**Project Contents**
+
+![](_misc/On%20adding%20a%20basic%20test%20case.png)
 
 **Making sure it fails**
 
