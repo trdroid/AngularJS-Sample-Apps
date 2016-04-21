@@ -228,7 +228,7 @@ It is possible to target more than one browser at the same time, by installing r
         Config file generated at "/home/droid/onGit/AngularJS/courses-app/karma.conf.js".
 ```
 
-<i> karma.conf.js </i>
+*karma.conf.js*
 
 ```javascript
 // Karma configuration
@@ -608,6 +608,8 @@ https://code.angularjs.org/
 
 https://docs.angularjs.org/api/ngMock
 
+**Get libraries**
+
 ```sh
 droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib$ mkdir angular
 droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib$ cd angular
@@ -621,6 +623,118 @@ droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib/angular$ curl -O
 100  102k  100  102k    0     0   322k      0 --:--:-- --:--:-- --:--:--  322k
 droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib/angular$ ls
 angular.min.js  angular-mocks.js
+```
+
+**Include libraries**
+
+*SpecRunner.html*
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner v2.4.1</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.4.1/jasmine_favicon.png">
+  <link rel="stylesheet" href="lib/jasmine-2.4.1/jasmine.css">
+
+  <script src="lib/jasmine-2.4.1/jasmine.js"></script>
+  <script src="lib/jasmine-2.4.1/jasmine-html.js"></script>
+  <script src="lib/jasmine-2.4.1/boot.js"></script>
+
+  <!-- include source files here... -->
+  <script src="lib/angular/angular.min.js"></script>            <-----------------
+  <script src="lib/angular/angular-mocks.js"></script>
+  <script src="src/Player.js"></script>
+  <script src="src/Song.js"></script>
+
+  <!-- include spec files here... -->
+  <script src="spec/SpecHelper.js"></script>
+  <script src="spec/PlayerSpec.js"></script>
+
+</head>
+
+<body>
+</body>
+</html>
+```
+
+*karma.conf.js*
+
+```javascript
+// Karma configuration
+// Generated on Mon Feb 22 2016 23:01:28 GMT-0500 (EST)
+
+module.exports = function(config) {
+  config.set({
+
+    // base path that will be used to resolve all patterns (eg. files, exclude)
+    basePath: '',
+
+
+    // frameworks to use
+    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['jasmine'],
+
+
+    // list of files / patterns to load in the browser
+    files: [
+      'lib/angular/angular.min.js',                             <-----------------
+      'lib/angular/angular-mocks.js'
+      'src/**/*.js',
+      'spec/**/*.js'
+    ],
+
+
+    // list of files to exclude
+    exclude: [
+    ],
+
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+    },
+
+
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['progress'],
+
+
+    // web server port
+    port: 9876,
+
+
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
+
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
+
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
+
+
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['PhantomJS'],
+
+
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: false,
+
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity
+  })
+}
 ```
 
 **Project Content**
