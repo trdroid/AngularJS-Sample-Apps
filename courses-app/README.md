@@ -850,3 +850,7 @@ describe('courses api service', function() {
 21 04 2016 12:17:35.658:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.037 secs / 0.001 secs)
 ```
+
+### Code Refactoring
+
+Remove unused template source files *src/Player.js* and *src/Song.js*
