@@ -2,6 +2,7 @@
 
 Create a directory "courses-app"
 
+```sh
 > courses-app$ node -v
 
     v4.2.2
@@ -47,9 +48,11 @@ Create a directory "courses-app"
 
 
     Is this ok? (yes)
+```
 
 ### Install Karma
 
+```sh
 > courses-app$ npm install karma --save-dev
 
     npm WARN package.json courses-app@1.0.0 No description
@@ -80,11 +83,13 @@ Create a directory "courses-app"
     ├── lodash@3.10.1
     ├── core-js@2.1.1
     └── socket.io@1.4.5 (has-binary@0.1.7, debug@2.2.0, socket.io-parser@2.2.6, socket.io-adapter@0.4.0, engine.io@1.6.8, socket.io-client@1.4.5)
+```
 
 ### Install Karma Command Line Utility
 
 To access karma just by the "karma" command without having to provide the exact path of the karma executable, install karma-cli globally.
 
+```sh
 > courses-app$ npm install karma-cli -g
 
         /home/droid/software/node/node-v4.2.2-linux-x64/bin/karma -> /home/droid/software/node/node-v4.2.2-linux-x64/lib/node_modules/karma-cli/bin/karma
@@ -110,6 +115,7 @@ To access karma just by the "karma" command without having to provide the exact 
         Options:
           --help     Print usage and options.
           --version  Print current version.  
+```
 
 ### Install Jasmine add-on and Choose Browser Target
 
@@ -157,6 +163,7 @@ It is possible to target more than one browser at the same time, by installing r
 
 ### Get Jasmine
 
+```sh
 > courses-app$ curl -L -O https://github.com/jasmine/jasmine/releases/download/v2.4.1/jasmine-standalone-2.4.1.zip
 
           % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -180,9 +187,11 @@ It is possible to target more than one browser at the same time, by installing r
           inflating: src/Song.js             
           inflating: spec/PlayerSpec.js      
           inflating: spec/SpecHelper.js      
+```
 
 ### Setup Default Configuration for Karma
 
+```sh
 > courses-app$ karma init
 
         Which testing framework do you want to use ?
@@ -217,6 +226,7 @@ It is possible to target more than one browser at the same time, by installing r
 
 
         Config file generated at "/home/droid/onGit/AngularJS/courses-app/karma.conf.js".
+```
 
 <i> karma.conf.js </i>
 
@@ -294,12 +304,13 @@ module.exports = function(config) {
 ```
 ### Project Contents
 
-<img src="_misc/project%20structure.png"/>
+![](_misc/project%20structure.png")
 
 ### Start Tests
 
 Start the tests using the <i>karma start</i> command and by passing it the configuration file created above
 
+```sh
 > courses-app$ karma start karma.conf.js
 
         22 02 2016 23:04:44.676:WARN [karma]: No captured browser, open http://localhost:9876/
@@ -307,10 +318,11 @@ Start the tests using the <i>karma start</i> command and by passing it the confi
         22 02 2016 23:04:44.710:INFO [launcher]: Starting browser Chrome
         22 02 2016 23:05:04.623:INFO [Chrome 48.0.2564 (Linux 0.0.0)]: Connected on socket /#ZiOLUc6bGwtXIhoXAAAA with id 88103244
         Chrome 48.0.2564 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.039 secs / 0.011 secs)
+```
 
 The browser started is shown below
 
-<img src="_misc/chrome%20launched%20on%20running%20tests%20using%20karma.png"/>
+![](_misc/chrome%20launched%20on%20running%20tests%20using%20karma.png")
 
 <b> Adding launch command to package.json </b>
 
@@ -339,6 +351,7 @@ To be able to run the tests using the <i>npm</i> command in the command-line, ad
 
 Now, the tests can be run with the command: <i>npm test</i>
 
+```sh
 > courses-app$ npm test
 
         > courses-app@1.0.0 test /home/droid/onGit/AngularJS/courses-app
@@ -349,6 +362,7 @@ Now, the tests can be run with the command: <i>npm test</i>
         22 02 2016 23:27:55.504:INFO [launcher]: Starting browser Chrome
         22 02 2016 23:28:04.150:INFO [Chrome 48.0.2564 (Linux 0.0.0)]: Connected on socket /#-wNF7lk19xAMR65uAAAA with id 49340086
         Chrome 48.0.2564 (Linux 0.0.0): Executed 5 of 5 SUCCESS (0.026 secs / 0.011 secs)
+```
 
 The browser opens up, just like above.
 
@@ -356,6 +370,7 @@ The browser opens up, just like above.
 
 PhantomJS launcher allows the tests to be run in a headless browser. This results in a faster feedback from running tests.
 
+```sh
 > courses-app$ npm install karma-phantomjs-launcher --save-dev
 
     npm WARN package.json courses-app@1.0.0 No repository field.
@@ -389,6 +404,7 @@ PhantomJS launcher allows the tests to be run in a headless browser. This result
 
     karma-phantomjs-launcher@1.0.0 node_modules/karma-phantomjs-launcher
     └── lodash@4.5.1
+```
 
 <b> Update karma.conf.js </b>
 
@@ -583,3 +599,26 @@ module.exports = function(config) {
 This opens up the Chrome browser similar to the snapshot shown above.
 
 Notice from the output that the tests were also run in the headless browser using the PhantomJS launcher.
+
+### Configuring AngularJS and ngMock
+
+*Links*
+
+https://code.angularjs.org/
+
+https://docs.angularjs.org/api/ngMock
+
+```sh
+droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib$ mkdir angular
+droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib$ cd angular
+droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib/angular$ curl -O https://code.angularjs.org/1.5.5/angular.min.js
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  154k  100  154k    0     0   238k      0 --:--:-- --:--:-- --:--:--  238k
+droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib/angular$ curl -O https://code.angularjs.org/1.5.5/angular-mocks.js
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  102k  100  102k    0     0   322k      0 --:--:-- --:--:-- --:--:--  322k
+droid@droidserver:~/onGit/AngularJS-Sample-Apps/courses-app/lib/angular$ ls
+angular.min.js  angular-mocks.js
+```
