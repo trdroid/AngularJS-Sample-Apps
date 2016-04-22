@@ -15,11 +15,16 @@ describe('courses api service', function() {
   };
 
   it('should return a list of courses offered and their details', function() {
-    var apiService = {
-      get: function(section) {
-        return courses;
+    var apiService = {};
+
+    angular.mock.module({
+      'apiService': {
+        get: function(section) {
+          return courses;
+        }
       }
-    };
+    });
+
     expect(apiService.get('courses')).toEqual(courses);
   })
 });
