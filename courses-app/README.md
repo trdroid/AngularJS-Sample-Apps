@@ -911,8 +911,14 @@ describe('courses api service', function() {
 });
 ```
 
-It results in an error as the "apiService" variable is empty and does not contain the "get" method, which is required for the line *expect(apiService.get('courses')).toEqual(courses);*.
+It results in the following error error as the "apiService" variable is empty and does not contain the "get" method, which is required for the line
+
+```javascript
+*expect(apiService.get('courses')).toEqual(courses);
+```
+
 The "apiService" variable should refer to the the "apiService" service associated with the inline module, so it can use the "get" method needed.
+
 
 ```sh
 PhantomJS 2.1.1 (Linux 0.0.0) courses api service should return a list of courses offered and their details FAILED
@@ -920,7 +926,6 @@ PhantomJS 2.1.1 (Linux 0.0.0) courses api service should return a list of course
 	/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js:28:26
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 (1 FAILED) ERROR (0.041 secs / 0.003 secs)
 ```
-
 
 **Using *angular.mock.inject()* function**
 
@@ -934,6 +939,9 @@ angular.mock.inject(function(<name-of-service-to-be-located>) {
   //save the handle to the located service in a variable
 })  
 ```
+
+The callback function passed to *angular.mock.inject()* declares the name of the service to be located as a parameter. It is by this name that the the *$locator* service of the *angular* module locates the service and injects it into this callback parameter.
+
 
 The *angular.mock.inject()* function adds the *angular* and *ngMock* modules at the beginning of the modules maintained by the *angular.mock.module()* function; loads and processes them in order. This allows any services from the loaded modules to be located using the *$locator* service of the *angular* module.
 
@@ -949,7 +957,10 @@ angular.mock.inject(function(apiService) {
 });
 ```
 
+
 The *angular.mock.inject()* loads and processes the *angular*, *ngMock* and the custom "apiService" modules in order.
+
+
 The *angular.mock.inject()* then uses the *$locator* service of the loaded *angular* module to locate the "apiService" (name of the callback parameter) and then inject its reference to the function parameter "apiService".
 
 
@@ -989,6 +1000,7 @@ describe('courses api service', function() {
   })
 });
 ```
+
 
 The following error happens because of a name clash.
 
