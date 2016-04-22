@@ -25,6 +25,10 @@ describe('courses api service', function() {
       }
     });
 
+    angular.mock.inject(function(_apiService_) {
+      apiService = _apiService_;
+    });
+
     expect(apiService.get('courses')).toEqual(courses);
   })
 });
