@@ -867,7 +867,7 @@ The key to achieve this is to use the *angular.mock.module()* function which can
 * String alias
 * Any combination of the above
 
-**Anonymous object literal approach**
+### Anonymous object literal approach
 
 This approach allows the modules and its components to be created inline, without having to reference any external modules by their names.
 It is a quick way to prototype and test AngularJS components before they can be moved to external modules.
@@ -921,6 +921,8 @@ PhantomJS 2.1.1 (Linux 0.0.0) courses api service should return a list of course
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 (1 FAILED) ERROR (0.041 secs / 0.003 secs)
 ```
 
+
+**Using *angular.mock.inject()* function**
 
 The *angular.mock.module()* function just maintains a list of inline modules created but are not processed. To load these modules, the *angular.mock.inject()* function has to be used.
 
