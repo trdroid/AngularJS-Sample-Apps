@@ -1,5 +1,11 @@
 # Getting Started
 
+Got the required angular files from the "BlogSite" project in the MEAN-Sample-Apps repository.
+
+![](_misc/project%20structure.png)
+
+*students-courses-app/index.html*
+
 ```html
 <!DOCTYPE html>
 <html ng-app="studentsApp">
@@ -14,6 +20,8 @@
 </body>
 </html>
 ```
+
+*students-courses-app/public/MainController.js*
 
 ```javascript
 (function() {
