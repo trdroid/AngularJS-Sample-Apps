@@ -6,22 +6,7 @@
 
 Got the required angular files from the "BlogSite" project in the MEAN-Sample-Apps repository.
 
-*students-courses-app/index.html*
-
-```html
-<!DOCTYPE html>
-<html ng-app="studentsApp">
-<body ng-controller="MainController">
-	<div>Name: {{student.name}} </div>
-	<div>
-		<img ng-src="{{student.profilepic}}" title="{{student.name}}">
-	</div>
-
-	<script src="public/angular/angular.js"></script>
-	<script src="public/MainController.js"></script>		
-</body>
-</html>
-```
+### Defining a student's data locally and displaying it
 
 *students-courses-app/public/MainController.js*
 
@@ -40,7 +25,24 @@ Got the required angular files from the "BlogSite" project in the MEAN-Sample-Ap
 }());
 ```
 
-### Start the server
+*students-courses-app/index.html*
+
+```html
+<!DOCTYPE html>
+<html ng-app="studentsApp">
+<body ng-controller="MainController">
+	<div>Name: {{student.name}} </div>
+	<div>
+		<img ng-src="{{student.profilepic}}" title="{{student.name}}">
+	</div>
+
+	<script src="public/angular/angular.js"></script>
+	<script src="public/MainController.js"></script>		
+</body>
+</html>
+```
+
+### Starting the server
 
 Started the server (code at <https://github.com/gruprog/Express.js-Sample-Apps/tree/master/students-courses-app>)
 
@@ -71,4 +73,26 @@ GET /images/profile/einstein.jpg 304 3.248 ms - -          <------------------- 
 GET /images/profile/einstein.jpg 304 1.186 ms - -
 GET /images/profile/einstein.jpg 304 0.696 ms - -
 ```
+
+### Fetching students data from the server
+
+```javascript
+(function() {
+	var studentsApp = angular.module('studentsApp', []);
+
+	studentsApp.controller('MainController', function($scope, $http) {
+		var onStudentsFetchComplete = function(response) {
+			$scope.students = response.data;
+		}
+
+		var onErrorHandler = function(e) {
+			$scope.error = "Error occurred in fetching the students datad";
+		}
+
+		$http.get("http://localhost:3000/students").then(onStudentsFetchComplete, onErrorHandler);		
+	});
+}());
+```
+
+### Testing in the browser
 
