@@ -113,6 +113,10 @@ On requesting http://localhost:3000/students, the server returns the following d
 </html>
 ```
 
+### Fixing it on the server side
+
+To fix this issue, enable cors on the server side.
+
 ### Testing in the browser
 
 ![](_misc/XHR%20cannot%20be%20made%20error.png)
@@ -138,13 +142,11 @@ droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app$ npm start
 GET /students 304 20.017 ms - -
 ```
 
-### Fixing it on the server side
-
-To fix this issue, enable cors on the server side.
-
 ### Testing again
 
 ![](_misc/After%20enabling%20CORS%20on%20the%20server.png)
+
+Notice "Access-Control-Allow-Origin: *" in the response headers after enabling CORS on the server side. This was missing from the previous response headers, as could be noticed in a previous snapshot.
 
 ![](_misc/detailed%20look%20at%20students.png)
 
@@ -161,3 +163,4 @@ droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app$ npm start
 GET /students 304 14.936 ms - -
 GET /images/profile/newton.jpg 304 6.187 ms - -
 ```
+
