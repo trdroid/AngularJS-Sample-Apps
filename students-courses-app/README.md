@@ -76,6 +76,12 @@ GET /images/profile/einstein.jpg 304 0.696 ms - -
 
 ### Fetching students data from the server
 
+On requesting http://localhost:3000/students, the server returns the following data
+
+```
+
+```
+
 ```javascript
 (function() {
 	var studentsApp = angular.module('studentsApp', []);
