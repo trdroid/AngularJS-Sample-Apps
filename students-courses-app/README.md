@@ -78,9 +78,7 @@ GET /images/profile/einstein.jpg 304 0.696 ms - -
 
 On requesting http://localhost:3000/students, the server returns the following data
 
-```
-
-```
+![](_misc/Getting%20students%20to%20browser.png)
 
 ```javascript
 (function() {
@@ -146,7 +144,11 @@ To fix this issue, enable cors on the server side.
 
 ### Testing again
 
+![](_misc/After%20enabling%20CORS%20on%20the%20server.png)
 
+![](_misc/detailed%20look%20at%20students.png)
+
+![](_misc/headers%20for%20the%20image.png)
 
 On the server side
 
