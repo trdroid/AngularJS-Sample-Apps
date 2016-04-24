@@ -94,6 +94,21 @@ GET /images/profile/einstein.jpg 304 0.696 ms - -
 }());
 ```
 
+```html
+<!DOCTYPE html>
+<html ng-app="studentsApp">
+<body ng-controller="MainController">
+	<div>Name: {{students[1].name}} </div>     ---------------
+	<div>
+		<img ng-src="{{students[1].profilepic}}" title="{{students[1].name}}">    ----------------
+	</div>
+
+	<script src="public/angular/angular.js"></script>
+	<script src="public/MainController.js"></script>		
+</body>
+</html>
+```
+
 ### Testing in the browser
 
 ![](_misc/XHR%20cannot%20be%20made%20error.png)
@@ -102,7 +117,7 @@ Notice the XHR request made to fetch students data from the server
 
 ![](_misc/XHR%20cannot%20be%20made%20-%20sources%20delivered.png)
 
-Notice that the origin is null
+Notice that the Origin is null
 
 ![](_misc/XHR%20cannot%20be%20made%20-%20students.png)
 
@@ -119,4 +134,22 @@ droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app$ npm start
 GET /students 304 20.017 ms - -
 ```
 
+### Fixing it on the server side
 
+To fix this issue, enable cors on the server side.
+
+### Testing again
+
+
+
+On the server side
+
+```
+droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app$ npm start
+
+> students-courses@0.0.0 start /home/droid/onBB/Express.js-Sample-Apps/students-courses-app
+> node ./bin/www
+
+GET /students 304 14.936 ms - -
+GET /images/profile/newton.jpg 304 6.187 ms - -
+```
