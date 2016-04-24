@@ -98,7 +98,11 @@ GET /images/profile/einstein.jpg 304 0.696 ms - -
 
 ![](_misc/XHR%20cannot%20be%20made%20error.png)
 
+Notice the XHR request made to fetch students data from the server
+
 ![](_misc/XHR%20cannot%20be%20made%20-%20sources%20delivered.png)
+
+Notice that the origin is null
 
 ![](_misc/XHR%20cannot%20be%20made%20-%20students.png)
 
