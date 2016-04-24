@@ -96,3 +96,23 @@ GET /images/profile/einstein.jpg 304 0.696 ms - -
 
 ### Testing in the browser
 
+![](_misc/XHR%20cannot%20be%20made%20error.png)
+
+![](_misc/XHR%20cannot%20be%20made%20-%20sources%20delivered.png)
+
+![](_misc/XHR%20cannot%20be%20made%20-%20students.png)
+
+### On the server side
+
+On starting the server and making the first request, the following is displayed
+
+```
+droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app$ npm start
+
+> students-courses@0.0.0 start /home/droid/onBB/Express.js-Sample-Apps/students-courses-app
+> node ./bin/www
+
+GET /students 304 20.017 ms - -
+```
+
+
