@@ -32,7 +32,7 @@ Got the required angular files from the "BlogSite" project in the MEAN-Sample-Ap
 	studentsApp.controller('MainController', function($scope) {
 		var student = {
 			name: "Albert Einstein",
-			profilepic: "http://localhost:3000/images/profile/einstein.jpg"
+			profilepic: "http://localhost:3000/images/profile/einstein.jpg"  <--- served by the Express app
 		};
 
 		$scope.student = student;
@@ -56,7 +56,7 @@ droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app$ npm start
 
 On sending a request in the browser, the following is displayed
 
-
+![](_misc/initial%20testing%20in%20the%20browser.png)
 
 On the server side, the following is printed to the console
 
@@ -71,3 +71,4 @@ GET /images/profile/einstein.jpg 304 3.248 ms - -          <------------------- 
 GET /images/profile/einstein.jpg 304 1.186 ms - -
 GET /images/profile/einstein.jpg 304 0.696 ms - -
 ```
+
