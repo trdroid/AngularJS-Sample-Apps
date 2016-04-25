@@ -788,8 +788,8 @@ describe('courses api service', function() {
   };
 
   it('should return a list of courses offered and their details', function() {
-    var apiService = {};
-    expect(apiService.get('courses')).toEqual(courses);
+    var coursesAPI = {};
+    expect(coursesAPI.get('courses')).toEqual(courses);
   })
 });
 ```
@@ -838,12 +838,12 @@ describe('courses api service', function() {
   };
 
   it('should return a list of courses offered and their details', function() {
-    var apiService = {
+    var coursesAPI = {
       get: function(section) {                <--------------
         return courses;
       }
     };
-    expect(apiService.get('courses')).toEqual(courses);
+    expect(coursesAPI.get('courses')).toEqual(courses);
   })
 });
 ```
@@ -872,6 +872,12 @@ The key to achieve this is to use the *angular.mock.module()* function which can
 This approach allows the modules and its components to be created inline, without having to reference any external modules by their names.
 It is a quick way to prototype and test AngularJS components before they can be moved to external modules.
 
+```javascript
+angular.mock.module({         <------- object literal
+  <module component name>: <value>
+});
+```
+
 The following shows how a module and its service are created inline.
 
 Create an angular module using the *angular.mock.module()* function and add a service to the module by passing in an object literal with the service name "apiService" as the key and assign it an object that contains the required function "get" which returns a list of courses.
@@ -896,28 +902,28 @@ describe('courses api service', function() {
   };
 
   it('should return a list of courses offered and their details', function() {
-    var apiService = {};                   
+    var courseAPI = {};                   
 
     angular.mock.module({                   <------------
-      'apiService': {
+      'coursesAPI': {
         get: function(section) {
           return courses;
         }
       }
     });
 
-    expect(apiService.get('courses')).toEqual(courses);
+    expect(coursesAPI.get('courses')).toEqual(courses);
   })
 });
 ```
 
-It results in the following error error as the "apiService" variable is empty and does not contain the "get" method, which is required for the line
+It results in the following error error as the "coursesAPI" variable is empty and does not contain the "get" method, which is required for the line
 
 ```javascript
-*expect(apiService.get('courses')).toEqual(courses);
+*expect(coursesAPI.get('courses')).toEqual(courses);
 ```
 
-The "apiService" variable should refer to the the "apiService" service associated with the inline module, so it can use the "get" method needed.
+The "coursesAPI" variable should refer to the the "coursesAPI" service associated with the inline module, so it can use the "get" method needed.
 
 
 ```sh
@@ -982,21 +988,21 @@ describe('courses api service', function() {
   };
 
   it('should return a list of courses offered and their details', function() {
-    var apiService = {};
+    var coursesAPI = {};
 
     angular.mock.module({
-      'apiService': {
+      'coursesAPI': {
         get: function(section) {
           return courses;
         }
       }
     });
 
-    angular.mock.inject(function(apiService) {            <--------------
-      apiService = apiService;
+    angular.mock.inject(function(coursesAPI) {            <--------------
+      coursesAPI = coursesAPI;
     });
 
-    expect(apiService.get('courses')).toEqual(courses);
+    expect(coursesAPI.get('courses')).toEqual(courses);
   })
 });
 ```
@@ -1031,18 +1037,18 @@ describe('courses api service', function() {
   };
 
   it('should return a list of courses offered and their details', function() {
-    var apiService = {};
+    var coursesAPI = {};
 
     angular.mock.module({
-      'apiService': {
+      'coursesAPI': {
         get: function(section) {
           return courses;
         }
       }
     });
 
-    angular.mock.inject(function(_apiService_) {            <--------------
-      apiService = _apiService_;
+    angular.mock.inject(function(_coursesAPI_) {            <--------------
+      coursesAPI = _coursesAPI_;
     });
 
     expect(apiService.get('courses')).toEqual(courses);
@@ -1056,94 +1062,78 @@ describe('courses api service', function() {
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.04 secs / 0.005 secs)
 ```
 
-**Anonymous function approach**
+### Anonymous function approach
 
 It uses the Angular's *$provide* service, which can be used to create a *factory* that contains the logic for getting the list of courses.
 
 ```javascript
-angular.mock.module(function($provide) {
-  $provide.factory('coursesApiFactory', function() {
-    get: function(section) {
-      // Logic for populating the list of courses
-      return courses;
-    }
+describe('courses api service', function() {
+  var courses = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  it('should return a list of courses offered and their details', function() {
+    var coursesAPI = {};
+
+    angular.mock.module(function($provide) {
+      $provide.factory('coursesAPI', function() {
+        return {
+          get: function(section) {
+            return courses;
+          }
+        }
+      })
+    });
+
+    angular.mock.inject(function(_coursesAPI_) {
+      coursesAPI = _coursesAPI_;
+    });
+
+    expect(coursesAPI.get('courses')).toEqual(courses);
   })
 });
 ```
 
-**Accessing a module by name**
+```sh
+24 10 2016 22:22:28.807:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.039 secs / 0.009 secs)
+```
+
+### String alias approach
+
+This approach involves accessing a module by its name.
 
 ```javascript
 angular.mock.module(<literal name of the module>);
 ```
 
-Example
 
-```javascript
-angular.mock.module('coursesModule');
-```
-
-Using this approach in the current example
-
-*spec/courses/api-service.spec.js*
-
-```javascript
-describe('courses api service', function() {
-  it('should return a list of courses offered and their details', function() {
-    var apiService = {};
-
-    angular.mock.module({
-      'coursesApi': {
-        get: function(section) {
-          return courses;
-        }
-      }
-    });
-
-    angular.mock.inject(function(coursesApi) {
-      apiService = coursesApi;
-    });
-
-    expect(apiService.get('courses')).toEqual(courses);
-  })
-});
-```
+In the previous approaches, the test case (*spec/courses/api-service.spec.js*) itself has the source code defined even though it was defined in an inline module. This code has to be refactored to an external angular module. Ideally, the test case should access the source code defined in an external angular module.
 
 
+To use this approach, first refactor the code to use an external module that can then be accessed in the test case.
 
-**Any combination of the above**
-
-The *angular.mock.module()* function accepts multiple arguments of any of the above mentioned types
-
-```javascript
-angular.mock.module(<module literal name>, <anonymous function>, <object literal>);
-```
-
-
-**Creating AngularJS components inline to tests**
-
-The test case (*spec/courses/api-service.spec.js*) itself has the source code defined in the function passed to the *describe()* function. This code has to be refactored to an angular module. Ideally, the test case should access the source code defined in an angular module. Assuming that the code is defined in a factory "coursesApiFactory" associated with the angular module "coursesModule", the test case looks like
-
-*spec/courses/api-service.spec.js*
-
-```javascript
-describe('courses api service', function() {
-  it('should return a list of courses offered and their details', function() {
-    expect(coursesApiFactory.get('courses')).toEqual(courses);
-  })
-});
-```
-
-Create a source file (*src/courses/api-service.js*) that has the same sub-path and name (excluding the "spec" in the name) as its corresponding test file (*spec/courses/api-service.spec.js*).
+Create a source file (*src/courses/api-service.js*) that has the same sub-path and name (excluding the "spec" in the name) as its corresponding test file (*spec/courses/api-service.spec.js*). Create a module and associate a factory with it that contains the logic.
 
 *src/courses/api-service.js*
 
 ```javascript
 angular.module('coursesModule', [])
-  .factory('coursesApiFactory', function() {
-    var apiService = {};
+  .factory('coursesAPI', function() {
+    var coursesAPI = {};
 
-    apiService.get = function(section) {
+    coursesAPI.get = function(section) {
       return {
         "courses": [
           {
@@ -1160,52 +1150,54 @@ angular.module('coursesModule', [])
       };
     }
 
-    return apiService;
+    return coursesAPI;
   });
 ```
 
-*SpecRunner.html*
-
-```html
-<!DOCTYPE html>
-<html ng-app="coursesModule">                 <----------------
-<head>
-  <meta charset="utf-8">
-  <title>Jasmine Spec Runner v2.4.1</title>
-
-  <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.4.1/jasmine_favicon.png">
-  <link rel="stylesheet" href="lib/jasmine-2.4.1/jasmine.css">
-
-  <script src="lib/jasmine-2.4.1/jasmine.js"></script>
-  <script src="lib/jasmine-2.4.1/jasmine-html.js"></script>
-  <script src="lib/jasmine-2.4.1/boot.js"></script>
-
-  <!-- include source files here... -->
-  <script src="lib/angular/angular.min.js"></script>
-  <script src="lib/angular/angular-mocks.js"></script>
-  <script src="src/Player.js"></script>
-  <script src="src/Song.js"></script>
-
-  <!-- include spec files here... -->
-  <script src="spec/SpecHelper.js"></script>
-  <script src="spec/PlayerSpec.js"></script>
-
-</head>
-
-<body>
-</body>
-</html>
-```
-
-### Accessing the module from the unit test
+Using this approach in the current example
 
 *spec/courses/api-service.spec.js*
 
 ```javascript
 describe('courses api service', function() {
+  var courses = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
   it('should return a list of courses offered and their details', function() {
-    //How to get an access to the module "coursesModule" to access "coursesApiFactory" used below
-    expect(coursesApiFactory.get('courses')).toEqual(courses);
+    var coursesAPI = {};
+
+    angular.mock.module('coursesModule');
+
+    angular.mock.inject(function(_coursesAPI_) {
+      coursesAPI = _coursesAPI_;
+    });
+
+    expect(coursesAPI.get('courses')).toEqual(courses);
   })
 });
+```
+
+```sh
+24 10 2016 23:34:01.823:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.038 secs / 0.02 secs)
+```
+
+### Any combination of the above
+
+The *angular.mock.module()* function accepts multiple arguments of any of the above mentioned types
+
+```javascript
+angular.mock.module(<module literal name>, <anonymous function>, <object literal>);
 ```

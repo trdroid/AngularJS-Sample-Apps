@@ -1,8 +1,8 @@
 angular.module('coursesModule', [])
-  .factory('coursesApi', function() {
-    var apiService = {};
+  .factory('coursesAPI', function() {
+    var coursesAPI = {};
 
-    apiService.get = function(section) {
+    coursesAPI.get = function(section) {
       return {
         "courses": [
           {
@@ -19,5 +19,5 @@ angular.module('coursesModule', [])
       };
     }
 
-    return apiService;
+    return coursesAPI;
   });

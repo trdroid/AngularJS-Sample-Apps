@@ -15,20 +15,14 @@ describe('courses api service', function() {
   };
 
   it('should return a list of courses offered and their details', function() {
-    var apiService = {};
+    var coursesAPI = {};
 
-    angular.mock.module({
-      'apiService': {
-        get: function(section) {
-          return courses;
-        }
-      }
+    angular.mock.module('coursesModule');
+
+    angular.mock.inject(function(_coursesAPI_) {
+      coursesAPI = _coursesAPI_;
     });
 
-    angular.mock.inject(function(_apiService_) {
-      apiService = _apiService_;
-    });
-
-    expect(apiService.get('courses')).toEqual(courses);
+    expect(coursesAPI.get('courses')).toEqual(courses);
   })
 });
