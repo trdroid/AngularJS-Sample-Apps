@@ -1202,6 +1202,43 @@ The *angular.mock.module()* function accepts multiple arguments of any of the ab
 angular.mock.module(<module literal name>, <anonymous function>, <object literal>);
 ```
 
+### Fixing SpecRunner.html
+
+To use SpecRunner.html, make the following changes to it
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner v2.4.1</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.4.1/jasmine_favicon.png">
+  <link rel="stylesheet" href="lib/jasmine-2.4.1/jasmine.css">
+
+  <script src="lib/jasmine-2.4.1/jasmine.js"></script>
+  <script src="lib/jasmine-2.4.1/jasmine-html.js"></script>
+  <script src="lib/jasmine-2.4.1/boot.js"></script>
+
+  <!-- include source files here... -->
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-mocks.js"></script>
+
+  <script src="src/courses/api-service.js"></script>              <---------------
+  <script src="spec/courses/api-service.spec.js"></script>
+</head>
+
+<body>
+</body>
+</html>
+```
+
+**Test Results in Browser**
+
+Open SpecRunner.html in a browser
+
+![](_misc/Opening%20SpecRunner%20in%20browser.png)
+
 ### Adding another test case
 
 ```javascript
