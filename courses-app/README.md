@@ -811,7 +811,7 @@ describe('courses api service', function() {
 21 04 2016 11:51:12.462:INFO [launcher]: Starting browser PhantomJS
 21 04 2016 11:51:15.865:INFO [PhantomJS 2.1.1 (Linux 0.0.0)]: Connected on socket /#hAkOmNivO4EdwlYaAAAA with id 90341517
 PhantomJS 2.1.1 (Linux 0.0.0) courses api service should return a list of courses offered and their details FAILED
-	TypeError: undefined is not a function (evaluating 'apiService.get('courses')') in /home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js (line 19)
+	TypeError: undefined is not a function (evaluating 'coursesAPI.get('courses')') in /home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js (line 19)
 	/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js:19:26
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 (1 FAILED) ERROR (0.041 secs / 0.001 secs)
 ```
@@ -880,7 +880,7 @@ angular.mock.module({         <------- object literal
 
 The following shows how a module and its service are created inline.
 
-Create an angular module using the *angular.mock.module()* function and add a service to the module by passing in an object literal with the service name "apiService" as the key and assign it an object that contains the required function "get" which returns a list of courses.
+Create an angular module using the *angular.mock.module()* function and add a service to the module by passing in an object literal with the service name "coursesAPI" as the key and assign it an object that contains the required function "get" which returns a list of courses.
 
 *spec/courses/api-service.spec.js*
 
@@ -928,7 +928,7 @@ The "coursesAPI" variable should refer to the the "coursesAPI" service associate
 
 ```sh
 PhantomJS 2.1.1 (Linux 0.0.0) courses api service should return a list of courses offered and their details FAILED
-	TypeError: undefined is not a function (evaluating 'apiService.get('courses')') in /home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js (line 28)
+	TypeError: undefined is not a function (evaluating 'coursesAPI.get('courses')') in /home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js (line 28)
 	/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js:28:26
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 (1 FAILED) ERROR (0.041 secs / 0.003 secs)
 ```
@@ -958,16 +958,16 @@ The *$locator* service of the *angular* module locates the \<name-of-service-to-
 In this case, the *angular.mock.inject()* function should be called as
 
 ```javascript
-angular.mock.inject(function(apiService) {
-  //save the reference to the apiService instance injected
+angular.mock.inject(function(coursesAPI) {
+  //save the reference to the coursesAPI instance injected
 });
 ```
 
 
-The *angular.mock.inject()* loads and processes the *angular*, *ngMock* and the custom "apiService" modules in order.
+The *angular.mock.inject()* loads and processes the *angular*, *ngMock* and the custom "coursesAPI" modules in order.
 
 
-The *angular.mock.inject()* then uses the *$locator* service of the loaded *angular* module to locate the "apiService" (name of the callback parameter) and then inject its reference to the function parameter "apiService".
+The *angular.mock.inject()* then uses the *$locator* service of the loaded *angular* module to locate the "coursesAPI" (name of the callback parameter) and then inject its reference to the function parameter "coursesAPI".
 
 
 ```javascript
@@ -1012,7 +1012,7 @@ The following error happens because of a name clash.
 
 ```sh
 PhantomJS 2.1.1 (Linux 0.0.0) courses api service should return a list of courses offered and their details FAILED
-	TypeError: undefined is not a function (evaluating 'apiService.get('courses')') in /home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js (line 32)
+	TypeError: undefined is not a function (evaluating 'coursesAPI.get('courses')') in /home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js (line 32)
 	/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js:32:26
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 (1 FAILED) ERROR (0.043 secs / 0.01 secs)
 ```
@@ -1051,7 +1051,7 @@ describe('courses api service', function() {
       coursesAPI = _coursesAPI_;
     });
 
-    expect(apiService.get('courses')).toEqual(courses);
+    expect(coursesAPI.get('courses')).toEqual(courses);
   })
 });
 ```
@@ -1178,7 +1178,7 @@ describe('courses api service', function() {
   it('should return a list of courses offered and their details', function() {
     var coursesAPI = {};
 
-    angular.mock.module('coursesModule');
+    angular.mock.module('coursesModule');           <--------------
 
     angular.mock.inject(function(_coursesAPI_) {
       coursesAPI = _coursesAPI_;
@@ -1201,3 +1201,67 @@ The *angular.mock.module()* function accepts multiple arguments of any of the ab
 ```javascript
 angular.mock.module(<module literal name>, <anonymous function>, <object literal>);
 ```
+
+### Adding another test case
+
+```javascript
+describe('courses api service', function() {
+  var coursesExpected = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  var coursesByCategoryExpected = {             <-------------------
+    "courses": [
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  it('should return a list of courses offered and their details', function() {
+    var coursesAPI = {};
+
+    angular.mock.module('coursesModule');
+
+    angular.mock.inject(function(_coursesAPI_) {
+      coursesAPI = _coursesAPI_;
+    });
+
+    expect(coursesAPI.get('courses')).toEqual(coursesExpected);
+  })
+});
+
+it('should return all courses of a category', function() {        <------------------
+  var coursesAPI = {};
+
+  angular.mock.module('coursesModule');
+
+  angular.mock.inject(function(_coursesAPI_) {
+    coursesAPI = _coursesAPI_;
+  });
+
+  expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+});
+```
+
+```sh
+PhantomJS 2.1.1 (Linux 0.0.0)  should return all courses of a category FAILED
+	TypeError: undefined is not a function (evaluating 'coursesAPI.findCoursesByCategory('Java')') in /home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js (line 49)
+	/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js:49:42
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 (1 FAILED) (0.045 secs / 0.014 secs)
+```
+
+**Writing just enough code to make the test pass**
