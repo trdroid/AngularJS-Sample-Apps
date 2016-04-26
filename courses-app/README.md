@@ -1520,3 +1520,139 @@ describe('courses api service', function() {
 26 04 2016 12:02:58.890:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 SUCCESS (0.041 secs / 0.018 secs)
 ```
+
+### Serializing Objects for Logging
+
+*spec/courses/api-service.spec.js*
+
+```javascript
+describe('courses api service', function() {
+  var coursesExpected = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  var coursesByCategoryExpected = {
+    "courses": [
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  var coursesAPI = {};
+
+  beforeEach(module('coursesModule'));
+
+  beforeEach(inject(function(_coursesAPI_) {
+    coursesAPI = _coursesAPI_;
+  }));
+
+  it('should return a list of courses offered and their details', function() {
+    console.log(coursesExpected);                               <------------------
+    expect(coursesAPI.get('courses')).toEqual(coursesExpected);
+  });
+
+  it('should return all courses of a category', function() {
+    expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+  });
+});
+```
+
+```sh
+26 04 2016 13:13:16.489:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+LOG: Object{courses: [Object{Title: ..., ID: ..., Category: ...}, Object{Title: ..., ID: ..., Category: ...}]}
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 SUCCESS (0.042 secs / 0.008 secs)
+```
+
+To provide better logging, *ngMock* provides the *dump()* function that serializes objects into strings. *angular.mock.dump()* can serialize the following
+
+* Primitive types
+* DOM elements
+* JavaScript objects
+* Angular Scope Objects
+
+
+```javascript
+describe('courses api service', function() {
+  var coursesExpected = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  var coursesByCategoryExpected = {
+    "courses": [
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  var coursesAPI = {};
+
+  beforeEach(module('coursesModule'));
+
+  beforeEach(inject(function(_coursesAPI_) {
+    coursesAPI = _coursesAPI_;
+  }));
+
+  it('should return a list of courses offered and their details', function() {
+    console.log(angular.mock.dump(coursesExpected));              <---------------
+    expect(coursesAPI.get('courses')).toEqual(coursesExpected);
+  });
+
+  it('should return all courses of a category', function() {
+    expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+  });
+});
+```
+
+```sh
+26 04 2016 13:26:31.279:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+LOG: '{
+  "courses": [
+    {
+      "Title": "Beginning AngularJS",
+      "ID": "Ang15",
+      "Category": "JavaScript"
+    },
+    {
+      "Title": "Beginning Android",
+      "ID": "And20",
+      "Category": "Java"
+    }
+  ]
+}'
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 SUCCESS (0.042 secs / 0.018 secs)
+```
+
+### Viewing logs in Browser
+
+Open *SpecRunner.html* in a browser and view the console
+
+
+![](_misc/Viewing%20log%20in%20browser.png)
