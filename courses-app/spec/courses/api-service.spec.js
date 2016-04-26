@@ -33,6 +33,7 @@ describe('courses api service', function() {
   }));
 
   it('should return a list of courses offered and their details', function() {
+    console.log(angular.mock.dump(coursesExpected)); 
     expect(coursesAPI.get('courses')).toEqual(coursesExpected);
   });
 
