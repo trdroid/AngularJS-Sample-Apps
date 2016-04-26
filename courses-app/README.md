@@ -1106,7 +1106,7 @@ describe('courses api service', function() {
 ```
 
 ```sh
-24 10 2016 22:22:28.807:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+24 04 2016 22:22:28.807:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.039 secs / 0.009 secs)
 ```
 
@@ -1190,7 +1190,7 @@ describe('courses api service', function() {
 ```
 
 ```sh
-24 10 2016 23:34:01.823:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+24 04 2016 23:34:01.823:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.038 secs / 0.02 secs)
 ```
 
@@ -1205,6 +1205,8 @@ angular.mock.module(<module literal name>, <anonymous function>, <object literal
 ### Fixing SpecRunner.html
 
 To use SpecRunner.html, make the following changes to it
+
+*SpecRunner.html*
 
 ```html
 <!DOCTYPE html>
@@ -1240,6 +1242,8 @@ Open SpecRunner.html in a browser
 ![](_misc/Opening%20SpecRunner%20in%20browser.png)
 
 ### Adding another test case
+
+*spec/courses/api-service.spec.js*
 
 ```javascript
 describe('courses api service', function() {
@@ -1303,6 +1307,8 @@ PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 (1 FAILED) (0.045 secs / 0.014 se
 
 **Writing just enough code to make the test pass**
 
+*src/courses/api-service.js*
+
 ```javascript
 angular.module('coursesModule', [])
   .factory('coursesAPI', function() {
@@ -1343,6 +1349,120 @@ angular.module('coursesModule', [])
 
 
 ```sh
-25 10 2016 10:52:02.024:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+25 04 2016 10:52:02.024:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
 PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 SUCCESS (0.038 secs / 0.017 secs)
+```
+
+### Refactoring tests
+
+Notice the code duplication in the test cases
+
+*spec/courses/api-service.spec.js*
+
+```javascript
+describe('courses api service', function() {
+  var coursesExpected = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  var coursesByCategoryExpected = {
+    "courses": [
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  it('should return a list of courses offered and their details', function() {
+    var coursesAPI = {};                                  <-----------
+
+    angular.mock.module('coursesModule');                 <-----------
+
+    angular.mock.inject(function(_coursesAPI_) {          <-----------
+      coursesAPI = _coursesAPI_;
+    });
+
+    expect(coursesAPI.get('courses')).toEqual(coursesExpected);
+  });
+
+  it('should return all courses of a category', function() {
+    var coursesAPI = {};                                  <-----------
+
+    angular.mock.module('coursesModule');                 <-----------
+
+    angular.mock.inject(function(_coursesAPI_) {          <-----------
+      coursesAPI = _coursesAPI_;
+    });
+
+    expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+  });
+});
+```
+
+Jasmine provides a *beforeEach()* function that is performed before running each test case.
+
+
+*spec/courses/api-service.spec.js*
+
+```javascript
+describe('courses api service', function() {
+  var coursesExpected = {
+    "courses": [
+      {
+        "Title": "Beginning AngularJS",
+        "ID": "Ang15",
+        "Category": "JavaScript",
+      },
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  var coursesByCategoryExpected = {
+    "courses": [
+      {
+        "Title": "Beginning Android",
+        "ID": "And20",
+        "Category": "Java",
+      }
+    ]
+  };
+
+  var coursesAPI = {};
+
+  beforeEach(angular.mock.module('coursesModule'));             <-----------
+
+  beforeEach(angular.mock.inject(function(_coursesAPI_) {       <-----------
+    coursesAPI = _coursesAPI_;
+  }));
+
+  it('should return a list of courses offered and their details', function() {
+    expect(coursesAPI.get('courses')).toEqual(coursesExpected);
+  });
+
+  it('should return all courses of a category', function() {
+    expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+  });
+});
+```
+
+```sh
+26 04 2016 11:50:23.276:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 SUCCESS (0.027 secs / 0.184 secs)
 ```
