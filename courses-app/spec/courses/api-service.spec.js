@@ -26,9 +26,9 @@ describe('courses api service', function() {
 
   var coursesAPI = {};
 
-  beforeEach(angular.mock.module('coursesModule'));
+  beforeEach(module('coursesModule'));
 
-  beforeEach(angular.mock.inject(function(_coursesAPI_) {
+  beforeEach(inject(function(_coursesAPI_) {
     coursesAPI = _coursesAPI_;
   }));
 
