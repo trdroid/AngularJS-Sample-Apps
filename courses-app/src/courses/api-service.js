@@ -19,5 +19,17 @@ angular.module('coursesModule', [])
       };
     }
 
+    coursesAPI.findCoursesByCategory = function(category) {
+        return {
+          "courses": [
+            {
+              "Title": "Beginning Android",
+              "ID": "And20",
+              "Category": "Java",
+            }
+          ]
+        };
+    }
+
     return coursesAPI;
   });

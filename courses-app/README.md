@@ -1221,7 +1221,7 @@ describe('courses api service', function() {
     ]
   };
 
-  var coursesByCategoryExpected = {             <-------------------
+  var coursesByCategoryExpected = {                             <---------------
     "courses": [
       {
         "Title": "Beginning Android",
@@ -1241,19 +1241,19 @@ describe('courses api service', function() {
     });
 
     expect(coursesAPI.get('courses')).toEqual(coursesExpected);
-  })
-});
-
-it('should return all courses of a category', function() {        <------------------
-  var coursesAPI = {};
-
-  angular.mock.module('coursesModule');
-
-  angular.mock.inject(function(_coursesAPI_) {
-    coursesAPI = _coursesAPI_;
   });
 
-  expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+  it('should return all courses of a category', function() {    <---------------
+    var coursesAPI = {};
+
+    angular.mock.module('coursesModule');
+
+    angular.mock.inject(function(_coursesAPI_) {
+      coursesAPI = _coursesAPI_;
+    });
+
+    expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+  });
 });
 ```
 
@@ -1265,3 +1265,47 @@ PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 (1 FAILED) (0.045 secs / 0.014 se
 ```
 
 **Writing just enough code to make the test pass**
+
+```javascript
+angular.module('coursesModule', [])
+  .factory('coursesAPI', function() {
+    var coursesAPI = {};
+
+    coursesAPI.get = function(section) {
+      return {
+        "courses": [
+          {
+            "Title": "Beginning AngularJS",
+            "ID": "Ang15",
+            "Category": "JavaScript",
+          },
+          {
+            "Title": "Beginning Android",
+            "ID": "And20",
+            "Category": "Java",
+          }
+        ]
+      };
+    }
+
+    coursesAPI.findCoursesByCategory = function(category) {
+        return {
+          "courses": [
+            {
+              "Title": "Beginning Android",
+              "ID": "And20",
+              "Category": "Java",
+            }
+          ]
+        };
+    }
+
+    return coursesAPI;
+  });
+```
+
+
+```sh
+25 10 2016 10:52:02.024:INFO [watcher]: Changed file "/home/droid/onGit/AngularJS-Sample-Apps/courses-app/spec/courses/api-service.spec.js".
+PhantomJS 2.1.1 (Linux 0.0.0): Executed 2 of 2 SUCCESS (0.038 secs / 0.017 secs)
+```

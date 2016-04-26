@@ -34,17 +34,17 @@ describe('courses api service', function() {
     });
 
     expect(coursesAPI.get('courses')).toEqual(coursesExpected);
-  })
-});
-
-it('should return all courses of a category', function() {
-  var coursesAPI = {};
-
-  angular.mock.module('coursesModule');
-
-  angular.mock.inject(function(_coursesAPI_) {
-    coursesAPI = _coursesAPI_;
   });
 
-  expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+  it('should return all courses of a category', function() {
+    var coursesAPI = {};
+
+    angular.mock.module('coursesModule');
+
+    angular.mock.inject(function(_coursesAPI_) {
+      coursesAPI = _coursesAPI_;
+    });
+
+    expect(coursesAPI.findCoursesByCategory('Java')).toEqual(coursesByCategoryExpected);
+  });
 });
